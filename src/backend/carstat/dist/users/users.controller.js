@@ -16,7 +16,9 @@ exports.UsersController = void 0;
 const common_1 = require("@nestjs/common");
 const create_user_dto_1 = require("./dtos/create-user.dto");
 const update_user_dto_1 = require("./dtos/update-user.dto");
+const user_dto_1 = require("./dtos/user.dto");
 const users_service_1 = require("./users.service");
+const serealize_interceptor_1 = require("../interceptors/serealize.interceptor");
 let UsersController = class UsersController {
     constructor(usersService) {
         this.usersService = usersService;
@@ -78,6 +80,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "removeUser", null);
 UsersController = __decorate([
+    (0, serealize_interceptor_1.Serialize)(user_dto_1.UserDto),
     (0, common_1.Controller)('auth'),
     __metadata("design:paramtypes", [users_service_1.UsersService])
 ], UsersController);
