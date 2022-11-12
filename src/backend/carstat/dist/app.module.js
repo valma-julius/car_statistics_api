@@ -14,7 +14,6 @@ const app_service_1 = require("./app.service");
 const users_module_1 = require("./users/users.module");
 const reports_module_1 = require("./reports/reports.module");
 const user_entity_1 = require("./users/user.entity");
-const report_entity_1 = require("./reports/report.entity");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -23,7 +22,7 @@ AppModule = __decorate([
             typeorm_1.TypeOrmModule.forRoot({
                 type: 'sqlite',
                 database: 'db.sqlite',
-                entities: [user_entity_1.User, report_entity_1.Report],
+                entities: [user_entity_1.User],
                 synchronize: true,
             }),
             users_module_1.UsersModule,

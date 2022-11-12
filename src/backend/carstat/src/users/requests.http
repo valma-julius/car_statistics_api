@@ -3,9 +3,25 @@ POST http://localhost:3000/auth/signup
 content-type: application/json
 
 {
-    "email": "ju@d.lt",
+    "email": "valma.julius@gmail.lt",
     "password": "password1234"
 }
+
+### Sign In
+POST http://localhost:3000/auth/signin
+content-type: application/json
+
+{
+    "email": "valma.julius@gmail.lt",
+    "password": "password1234"
+}
+
+
+### Sign Out
+POST http://localhost:3000/auth/signout
+
+### Checking whoami
+GET http://localhost:3000/auth/whoami
 
 ### Get a part user with id
 GET http://localhost:3000/auth/2
