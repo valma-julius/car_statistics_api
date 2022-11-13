@@ -10,11 +10,13 @@ exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
 const core_1 = require("@nestjs/core");
 const typeorm_1 = require("@nestjs/typeorm");
+const config_1 = require("@nestjs/config");
 const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
 const users_module_1 = require("./users/users.module");
 const reports_module_1 = require("./reports/reports.module");
 const user_entity_1 = require("./users/user.entity");
+const report_entity_1 = require("./reports/report.entity");
 const cookieSession = require('cookie-session');
 let AppModule = class AppModule {
     configure(consumer) {
@@ -28,11 +30,20 @@ let AppModule = class AppModule {
 AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
-            typeorm_1.TypeOrmModule.forRoot({
-                type: 'sqlite',
-                database: 'db.sqlite',
-                entities: [user_entity_1.User],
-                synchronize: true,
+            config_1.ConfigModule.forRoot({
+                isGlobal: true,
+                envFilePath: `.env.${process.env.NODE_ENV}`,
+            }),
+            typeorm_1.TypeOrmModule.forRootAsync({
+                inject: [config_1.ConfigService],
+                useFactory: (config) => {
+                    return {
+                        type: 'sqlite',
+                        database: config.get('DB_NAME'),
+                        synchronize: true,
+                        entities: [user_entity_1.User, report_entity_1.Report],
+                    };
+                },
             }),
             users_module_1.UsersModule,
             reports_module_1.ReportsModule,
