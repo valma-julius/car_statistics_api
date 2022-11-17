@@ -1,13 +1,12 @@
-import { User } from '../users/user.entity';
-export declare class Report {
+export declare class ReportDto {
     id: number;
     approved: boolean;
     price: number;
-    make: string;
-    model: string;
     year: number;
     lng: number;
     lat: number;
+    make: string;
+    model: string;
     mileage: number;
-    user: User;
+    userId: number;
 }
