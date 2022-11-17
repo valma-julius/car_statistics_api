@@ -1,0 +1,24 @@
+### Creating a report
+POST http://localhost:3000/reports
+content-type: application/json
+
+{
+    "make": "BMW",
+    "model": "318d",
+    "year": 2010,
+    "mileage": 170000,
+    "lng": 0,
+    "lat": 0,
+    "price": 12500
+}
+
+### Approving a report
+PATCH http://localhost:3000/reports/6
+content-type: application/json
+
+{
+    "approved": true
+}
+
+### Get an estimate for existing vehicle
+GET http://localhost:3000/reports?make=BMW&model=318d&lng=0&lat=0&mileage=10000&year=2010
